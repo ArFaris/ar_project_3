@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Задание 3</title>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <a-scene 
+    mindar-face="filterMinCF: 0.001; filterBeta: 1.0;" 
+    embedded 
+    color-space="sRGB" 
+    renderer="colorManagement: true, physicallyCorrectLights" 
+    vr-mode-ui="enabled: false" 
+    device-orientation-permission-ui="enabled: false">
+    
+    <a-assets>
+      <a-asset-item id="glassesModel" src="./glasses.glb"></a-asset-item>
+    </a-assets>
+
+    <a-camera active="false" position="0 0 0"></a-camera>
+
+    <a-entity mindar-face-target="anchorIndex: 168">
+      <a-entity mindar-face-default-face occluder="true"></a-entity>
+    </a-entity>
+
+    <a-entity mindar-face-target="anchorIndex: 168">
+      <a-gltf-model src="#glassesModel" rotation="0 0 0" position="0 0 0.05" scale="0.01 0.01 0.01"></a-gltf-model>
+    </a-entity>
+
+    <a-light type="ambient" intensity="1.0"></a-light>
+    <a-light type="directional" position="1 2 1" intensity="1.5"></a-light>
+  </a-scene>
+</body>
+</html>
